@@ -5,6 +5,8 @@ const src = resolve(__dirname, 'src');
 const build = resolve(__dirname, 'build');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
+
+
 module.exports = {
 	entry: {
 		app: './src/index.js',
@@ -12,8 +14,9 @@ module.exports = {
 
 	output: {
 		path: build,
-		filename: 'bundle.js',
+		filename: 'bundle.js', //fdosfsd
 	},
+	mode: 'development',
 
 	module: {
 		rules: [
