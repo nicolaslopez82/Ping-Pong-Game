@@ -1,4 +1,4 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, KEYS } from '../settings';
 
 export default class Paddle{
 
@@ -11,7 +11,7 @@ export default class Paddle{
         this.up = up;
         this.down = down;     
 
-        this.speed = 10;
+        this.speed = PROPERTIES.gap;
         this.score = 0;
         document.addEventListener('keydown', event => {
             console.log(event);
@@ -21,10 +21,18 @@ export default class Paddle{
                     break;
         
                 case this.down:
-                this.y = Math.min(this.boardHeight, this.y + this.speed);
+                this.y = Math.min(this.boardHeight - 56, this.y + this.speed);
                     break;	
             }
         });
+    }
+
+    increaseScore(){
+        this.score++;
+    }
+
+    getScore(){
+        return this.score;
     }
 
     coordinates(){
