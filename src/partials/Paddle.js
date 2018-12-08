@@ -1,4 +1,4 @@
-import { SVG_NS, KEYS } from '../settings';
+import { SVG_NS, KEYS, PROPERTIES } from '../settings';
 
 export default class Paddle{
 
@@ -11,20 +11,44 @@ export default class Paddle{
         this.up = up;
         this.down = down;     
 
-        this.speed = PROPERTIES.gap;
+        this.speed = PROPERTIES.speed;
         this.score = 0;
+
+        this.keyPressed = {};
         document.addEventListener('keydown', event => {
-            console.log(event);
-            switch(event.key){
-                case this.up: //don't move up, if is already 0.
-                this.y = Math.max(0, this.y - this.speed);
-                    break;
-        
-                case this.down:
-                this.y = Math.min(this.boardHeight - 56, this.y + this.speed);
-                    break;	
+            
+            if(event.key == this.up || event.key == this.down){
+                this.keyPressed[event.key] = true;
             }
+            
+            if(this.keyPressed[event.key] == true){
+                console.log(event);
+                switch(event.key){
+                    case this.up: //don't move up, if is already 0.
+                    this.y = Math.max(0, this.y - this.speed);
+                        break;
+            
+                    case this.down:
+                    this.y = Math.min(this.boardHeight - 56, this.y + this.speed);
+                        break;	
+                }
+            }
+
+            this.keyPressed[event.key] = false;
+            
         });
+
+        document.addEventListener('keyup', event => {
+            
+                this.keyPressed[event.key] = false;
+            
+            console.log(event);                    
+        });
+
+    }    
+
+    getHeight(){
+        return this.height;
     }
 
     increaseScore(){
@@ -33,7 +57,7 @@ export default class Paddle{
 
     getScore(){
         return this.score;
-    }
+    }  
 
     coordinates(){
         const leftX = this.x;

@@ -1,19 +1,24 @@
-import { SVG_NS } from '../settings';
+import { SVG_NS, PROPERTIES } from '../settings';
+import Game from './Game';
 
 export default class Ball{
 
-    constructor (radius, width, height){
+    constructor (radius, width, height, direction){
         this.ping = new Audio('public/sounds/pong-01.wav');
+        this.sound = true;
         this.radius = radius;
         this.boardWidth = width;
         this.boardHeigth = height;
-        this.direction = 1;
+        this.direction = direction;
+        this.color = 'white';
+        this.colorPallet = ["white", "chartreuse", "deeppink", "fuchsia", "greenyellow"];
+        this.speed = PROPERTIES.ballspeed;
         this.reset();
         document.addEventListener('keydown', event => {
             if(event.key === ''){
                 this.reset();
-            }
-        });
+            }            
+        });        
     }
 
     reset(){
@@ -21,9 +26,9 @@ export default class Ball{
         this.y = this.boardHeigth / 2;        
         this.vy = 0;
         while(this.vy === 0){
-            this.vy = Math.floor(Math.random() * 10 - 5);
+            this.vy = Math.floor(Math.random() * 10 - 5) + (this.speed);
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy));
+        this.vx = this.direction * (6 - Math.abs(this.vy) + (this.speed));
     }
 
     wallCollision(){
@@ -46,6 +51,9 @@ export default class Ball{
             if(hit){
                 this.vx *= -1;
                 this.ping.play();
+                this.color = this.colorPallet[Math.floor(Math.random() * 5)];
+                this.radius = Math.floor(Math.random() * 5) + 5;  
+                PROPERTIES.ballspeed++;              
             }
 
         }else{
@@ -58,6 +66,9 @@ export default class Ball{
             if(hit){
                 this.vx *= -1;
                 this.ping.play();
+                this.color = this.colorPallet[Math.floor(Math.random() * 5)];
+                this.radius = Math.floor(Math.random() * 5) + 5;
+                PROPERTIES.ballspeed++; 
             }
         }
     }
@@ -65,6 +76,7 @@ export default class Ball{
     checkScore(player1, player2){
         const hitLeft = (this.x - this.radius <= 0);
         const hitRight = (this.x + this.radius >= this.boardWidth);
+        this.speed = PROPERTIES.ballspeed;
         if(hitLeft){
             player2.increaseScore();            
             this.reset();
@@ -72,7 +84,7 @@ export default class Ball{
         }else if(hitRight){
             player1.increaseScore();
             this.reset();
-            this.direction *= -1;            
+            this.direction *= -1;                   
         }
     }
 
@@ -81,7 +93,7 @@ export default class Ball{
         circle.setAttributeNS(null, 'r', this.radius);
         circle.setAttributeNS(null, 'cx', this.x);
         circle.setAttributeNS(null, 'cy', this.y);
-        circle.setAttributeNS(null, 'fill', 'white');
+        circle.setAttributeNS(null, 'fill', this.color);
         svg.appendChild(circle);
         this.wallCollision();
         this.paddleCollision(player1, player2);

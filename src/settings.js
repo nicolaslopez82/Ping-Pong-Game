@@ -6,11 +6,12 @@ export const KEYS = {
     p2up : 'ArrowUp',
     p2down : 'ArrowDown',
     spaceBar : ' ',
-    gap : 10,
-    speed : 10
+    shotleft : 'f',
+    shotright :'p'
 }
 
 export const PROPERTIES = {
     gap : 10,
-    speed : 10
+    speed : 10,
+    ballspeed : 0
 }
