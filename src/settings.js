@@ -12,6 +12,7 @@ export const KEYS = {
 
 export const PROPERTIES = {
     gap : 10,
-    speed : 10,
-    ballspeed : 0
+    speed : 15,
+    ballspeed : 0,
+    ballDirections : 0
 }

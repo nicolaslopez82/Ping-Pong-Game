@@ -1,12 +1,14 @@
 import { SVG_NS, KEYS } from '../settings';
 
 export default class Bullet {
-    constructor(width, height, x, y){
-        this.width = width;
-        this.height = height;
-        this.x = x;
-        this.y = y;
-        this.direction = 1;
+    constructor(width, height){
+        this._width = width;
+        this._height = height;
+        this._x;
+        this._y;
+        this._direction = 1;
+        // this._vx = 0;
+        // this._vy = 0;
         //this.reset();
         document.addEventListener('keydown', event => {
             if(event.key === ''){
@@ -31,23 +33,23 @@ export default class Bullet {
     }
 
     reset(){
-        this.vy = 0;
-        while(this.vy === 0){
-            this.vy = Math.floor(Math.random() * 10 - 15);
+        this._vy = 0;
+        while(this._vy === 0){
+            this._vy = Math.floor(Math.random() * 10 - 15);
         }
-        this.vx = this.direction * (6 - Math.abs(this.vy));
+        this._vx = this._direction * (6 - Math.abs(this._vy));
     }
 
     render(svg, x, y){
         // this.x = this.x + this.vx;
         // this.y = this.y + this.vy;    
-        this.x = x;
-        this.y = y;               
+        this._x = x;
+        this._y = y;               
         let rect = document.createElementNS(SVG_NS, 'rect');
-        rect.setAttributeNS(null, 'width', this.width);
-        rect.setAttributeNS(null, 'height', this.height);
-        rect.setAttributeNS(null, 'x', this.x);
-        rect.setAttributeNS(null, 'y', this.y);
+        rect.setAttributeNS(null, 'width', this._width);
+        rect.setAttributeNS(null, 'height', this._height);
+        rect.setAttributeNS(null, 'x', this._x);
+        rect.setAttributeNS(null, 'y', this._y);
         // rect.setAttributeNS(null, 'x', this.x);
         // rect.setAttributeNS(null, 'y', this.y);
         rect.setAttributeNS(null, 'fill', 'fuchsia');
