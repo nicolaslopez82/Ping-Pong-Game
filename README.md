@@ -25,3 +25,10 @@ A basic pong game using SVGs.
 **Player 2:**
 * ▲ : up
 * ▼: down
+
+## TODO
+
+* Complete reset function.
+* Put more descriptive text.
+* Finish Bullet implementation.
+

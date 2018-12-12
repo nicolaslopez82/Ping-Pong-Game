@@ -7,29 +7,6 @@ export default class Bullet {
         this._x;
         this._y;
         this._direction = 1;
-        // this._vx = 0;
-        // this._vy = 0;
-        //this.reset();
-        document.addEventListener('keydown', event => {
-            if(event.key === ''){
-                this.reset();
-            }            
-        }); 
-
-        document.addEventListener('keydown', event => {
-            console.log(event);
-            switch(event.key){
-                case KEYS.shotLeft: 
-                //Bullet moving to the right.
-                //this.y = Math.max(0, this.y - this.speed);
-                    break;
-        
-                case KEYS.shotRight:
-                //Bullet moving to the left.
-                //this.y = Math.min(this.boardHeight - 56, this.y + this.speed);
-                    break;	
-            }
-        });
     }
 
     reset(){
