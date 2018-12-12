@@ -1,4 +1,4 @@
-import { SVG_NS, KEYS, PROPERTIES } from '../settings';
+import { SVG_NS, PROPERTIES } from '../settings';
 
 export default class Paddle{
 
@@ -13,34 +13,16 @@ export default class Paddle{
 
         this._speed = PROPERTIES.speed;
         this._score = 0;
-
-        this._keyPressed = {};
-        document.addEventListener('keydown', event => {
-            
-            if(event.key === this._up || event.key === this._down){
-                this._keyPressed[event.key] = true;
-            }
-            
-            if(this._keyPressed[event.key] == true){
-                console.log(event);
-                switch(event.key){
-                    case this._up: //don't move up, if is already 0.
-                    this._y = Math.max(0, this._y - this._speed);
-                        break;
-            
-                    case this._down:
-                    this._y = Math.min(this._boardHeight - 56, this._y + this._speed);
-                        break;	
-                }
-            }
-            this.keyPressed[event.key] = false;
-        });
-
-        document.addEventListener('keyup', event => {            
-                this._keyPressed[event.key] = false;            
-        });
-
     }    
+
+    up() {
+        this._y =  Math.max(this._y - this._speed, 0);
+    }
+
+ 
+    down() {
+        this._y = Math.min(this._y + this._speed, this._boardHeight - this._height);
+    }
 
     getHeight(){
         return this._height;
@@ -62,14 +44,25 @@ export default class Paddle{
         return [leftX, rightX, topY, bottomY];
     }
 
-    render(svg){
+    render(svg, keyPressed, playerNumber1){
+        
         let rect = document.createElementNS(SVG_NS, 'rect');
-        rect.setAttributeNS(null, 'fill', 'white');
+        let fillColor = playerNumber1 ? 'greenyellow' :  'deeppink';
+      
+        rect.setAttributeNS(null, 'fill', fillColor);
         rect.setAttributeNS(null, 'width', this._width);
         rect.setAttributeNS(null, 'height', this._height);
         rect.setAttributeNS(null, 'x', this._x);
         rect.setAttributeNS(null, 'y', this._y);
-        svg.appendChild(rect);
+        svg.appendChild(rect);        
+
+        if (keyPressed[this._up]) {
+            this.up();
+        }
+        
+        if (keyPressed[this._down]) {
+        this.down();
+        }
     }
 
 }
