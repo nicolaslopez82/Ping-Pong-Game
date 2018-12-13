@@ -7,7 +7,8 @@ export const KEYS = {
     p2down : 'ArrowDown',
     spaceBar : ' ',
     shotleft : 'f',
-    shotright :'p'
+    shotright :'p',
+    reset : 'r'
 }
 
 export const PROPERTIES = {
