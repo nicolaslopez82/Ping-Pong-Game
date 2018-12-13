@@ -27,8 +27,5 @@ A basic pong game using SVGs.
 * ▼: down
 
 ## TODO
-
-* Complete reset function.
-* Put more descriptive text.
 * Finish Bullet implementation.
 
