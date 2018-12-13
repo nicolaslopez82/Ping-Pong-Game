@@ -36,6 +36,10 @@ export default class Paddle{
         return this._score;
     }  
 
+    resetScore(){
+        this._score = 0;
+    }  
+
     coordinates(){
         const leftX = this._x;
         const rightX = this._x + this._width;

@@ -22,6 +22,7 @@ export default class Game {
         this._board = new Board(this._width, this._height);
         this._pause = false;
         this._scoreFontSize = 60;
+        this._reset = false;
 
         // Multiple keyboard pressed.
         this._keyPressed = {};
@@ -40,6 +41,12 @@ export default class Game {
                 this._pause = !this._pause;
             }
         });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === KEYS.reset) {
+                this._reset = !this._reset;
+            }
+        });        
 
         //Players
         this._player1 = new Paddle(
@@ -72,13 +79,38 @@ export default class Game {
 		this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);     
     }
 
+
+    reset(){        
+        this._bullet_p1 = new Bullet(15, 5);
+        this._bullet_p2 = new Bullet(15, 5);
+        this._ballRadius = 8;
+        this._ball1 = new Ball(this._ballRadius, this._width, this._height, 1);
+        this._ball2 = new Ball(this._ballRadius, this._width, this._height, -1);
+        this._score1 = new Score(this._width / 2 - 50, 30, this._scoreFontSize);
+        this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);  
+        this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);     
+        this._player1.resetScore();
+       this._player1._x = this._boardGap;
+        this._player1._y = ((this._height - this._paddleHeigth) / 2);
+        this._player2.resetScore();
+        this._player2._x = (this._width - this._boardGap - this._paddleWidth);        
+        this._player2._y = ((this._height - this._paddleHeigth) / 2);                            
+    }
+
     render() {
 
-		if (this._keyPressed[KEYS.spaceBar]) { 
+        //Reset Game
+        if(this._reset){
+            this._reset = !this._reset;
+            this._pause = false;
+            this.reset();
+        }	
+        
+        if (this._keyPressed[KEYS.spaceBar]) { 
 			this._pause = !this._pause;
         }
         
-        if(this._pause){
+        if(this._pause || this._player1.getScore() >= 3 || this._player2.getScore() >= 3){
             return;
         }
 
