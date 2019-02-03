@@ -1,6 +1,8 @@
-# Pong Game
+# Ping Pong Game - JavaScript
 
-A basic pong game using SVGs.
+A basic Ping Pong Game using SVG images.
+
+![pingpong](https://user-images.githubusercontent.com/6266503/52177391-07618800-2775-11e9-852f-29e8301566dc.gif)
 
 ## Setup
 
@@ -28,4 +30,3 @@ A basic pong game using SVGs.
 
 ## TODO
 * Finish Bullet implementation.
-

@@ -46,7 +46,7 @@ export default class Game {
             if (event.key === KEYS.reset) {
                 this._reset = !this._reset;
             }
-        });        
+        });
 
         //Players
         this._player1 = new Paddle(
@@ -69,32 +69,32 @@ export default class Game {
             KEYS.p2down
         );
 
-        //Game Objects       
+        //Game Objects
         this._bullet_p1 = new Bullet(15, 5);
         this._bullet_p2 = new Bullet(15, 5);
         this._ball1 = new Ball(this._ballRadius, this._width, this._height, 1);
         this._ball2 = new Ball(this._ballRadius, this._width, this._height, -1);
         this._score1 = new Score(this._width / 2 - 50, 30, this._scoreFontSize);
-        this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);  
-		this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);     
+        this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);
+		this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);
     }
 
 
-    reset(){        
+    reset(){
         this._bullet_p1 = new Bullet(15, 5);
         this._bullet_p2 = new Bullet(15, 5);
         this._ballRadius = 8;
         this._ball1 = new Ball(this._ballRadius, this._width, this._height, 1);
         this._ball2 = new Ball(this._ballRadius, this._width, this._height, -1);
         this._score1 = new Score(this._width / 2 - 50, 30, this._scoreFontSize);
-        this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);  
-        this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);     
+        this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);
+        this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);
         this._player1.resetScore();
        this._player1._x = this._boardGap;
         this._player1._y = ((this._height - this._paddleHeigth) / 2);
         this._player2.resetScore();
-        this._player2._x = (this._width - this._boardGap - this._paddleWidth);        
-        this._player2._y = ((this._height - this._paddleHeigth) / 2);                            
+        this._player2._x = (this._width - this._boardGap - this._paddleWidth);
+        this._player2._y = ((this._height - this._paddleHeigth) / 2);
     }
 
     render() {
@@ -104,13 +104,13 @@ export default class Game {
             this._reset = !this._reset;
             this._pause = false;
             this.reset();
-        }	
-        
-        if (this._keyPressed[KEYS.spaceBar]) { 
+        }
+
+        if (this._keyPressed[KEYS.spaceBar]) {
 			this._pause = !this._pause;
         }
-        
-        if(this._pause || this._player1.getScore() >= 3 || this._player2.getScore() >= 3){
+
+        if(this._pause || this._player1.getScore() >= 10 || this._player2.getScore() >= 10){
             return;
         }
 
@@ -131,14 +131,14 @@ export default class Game {
         this._score1.render(svg, this._player1.getScore());
         this._score2.render(svg, this._player2.getScore());
 
-        if(this._player1.getScore() == 3) {
+        if(this._player1.getScore() == 10) {
 			this._text.winner(svg, 1);
-			this._pause = true;			
+			this._pause = true;
 		}
 
-		if(this._player2.getScore() == 3) {
+		if(this._player2.getScore() == 10) {
 			this._text.winner(svg, 2);
-            this._pause = true;    
+            this._pause = true;
 		}
 
         //Bullet for Player1
@@ -148,7 +148,7 @@ export default class Game {
 
         //Bullet for Player2
         //const [left_p2, right_p2, top_p2, bottom_p2] = this._player2.coordinates();
-        //this.bullet.render(svg);        
+        //this.bullet.render(svg);
         //this._bullet_p2.render(svg, (left_p2 - this._bullet_p2._width), (top_p2 + (this._player2._height / 2)));
     }
 
