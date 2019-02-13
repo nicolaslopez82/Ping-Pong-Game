@@ -21,7 +21,7 @@ export default class Game {
         this._ballRadius = 8;
         this._board = new Board(this._width, this._height);
         this._pause = false;
-        this._scoreFontSize = 60;
+        this._scoreFontSize = 100;
         this._reset = false;
 
         // Multiple keyboard pressed.
@@ -76,7 +76,7 @@ export default class Game {
         this._ball2 = new Ball(this._ballRadius, this._width, this._height, -1);
         this._score1 = new Score(this._width / 2 - 50, 30, this._scoreFontSize);
         this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);
-		    this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);
+		    this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 3);
     }
 
 
@@ -131,12 +131,12 @@ export default class Game {
         this._score1.render(svg, this._player1.getScore());
         this._score2.render(svg, this._player2.getScore());
 
-        if(this._player1.getScore() == 10) {
+        if(this._player1.getScore() === 10) {
 			       this._text.winner(svg, 1);
 			       this._pause = true;
 		    }
 
-    		if(this._player2.getScore() == 10) {
+    		if(this._player2.getScore() === 10) {
     			this._text.winner(svg, 2);
                 this._pause = true;
     		}
