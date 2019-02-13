@@ -18,25 +18,15 @@ export default class Bullet {
     }
 
     render(svg, x, y){
-        // this.x = this.x + this.vx;
-        // this.y = this.y + this.vy;    
         this._x = x;
-        this._y = y;               
+        this._y = y;
         let rect = document.createElementNS(SVG_NS, 'rect');
         rect.setAttributeNS(null, 'width', this._width);
         rect.setAttributeNS(null, 'height', this._height);
         rect.setAttributeNS(null, 'x', this._x);
         rect.setAttributeNS(null, 'y', this._y);
-        // rect.setAttributeNS(null, 'x', this.x);
-        // rect.setAttributeNS(null, 'y', this.y);
         rect.setAttributeNS(null, 'fill', 'fuchsia');
 
         svg.appendChild(rect);
-
-        // this.wallCollision();
-        // this.paddleCollision(player1, player2);
-        // this.checkScore(player1, player2);
-        // this.x = this.x + this.vx;
-        // this.y = this.y + this.vy;
     }
 }
