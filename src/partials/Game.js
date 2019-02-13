@@ -76,7 +76,7 @@ export default class Game {
         this._ball2 = new Ball(this._ballRadius, this._width, this._height, -1);
         this._score1 = new Score(this._width / 2 - 50, 30, this._scoreFontSize);
         this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);
-		    this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 3);
+		    this._text = new Text(this._width/2 - 150, this._height/2 - 20, this._scoreFontSize / 4);
     }
 
 
@@ -88,7 +88,7 @@ export default class Game {
         this._ball2 = new Ball(this._ballRadius, this._width, this._height, -1);
         this._score1 = new Score(this._width / 2 - 50, 30, this._scoreFontSize);
         this._score2 = new Score(this._width / 2 + 25, 30, this._scoreFontSize);
-        this._text = new Text(this._width/2 - 120, this._height/2 - 20, this._scoreFontSize / 2);
+        this._text = new Text(this._width/2 - 150, this._height/2 - 20, this._scoreFontSize / 4);
         this._player1.resetScore();
         this._player1._x = this._boardGap;
         this._player1._y = ((this._height - this._paddleHeigth) / 2);
