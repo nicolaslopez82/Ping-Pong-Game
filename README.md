@@ -2,7 +2,7 @@
 
 A basic Ping Pong Game using SVG images.
 
-![pingpong](https://user-images.githubusercontent.com/6266503/52177391-07618800-2775-11e9-852f-29e8301566dc.gif)
+![javascript-game](https://user-images.githubusercontent.com/6266503/52711180-fae3e900-2f45-11e9-8983-e0b842ffb0c4.gif)
 
 ## Setup
 
